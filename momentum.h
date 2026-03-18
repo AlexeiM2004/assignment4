@@ -15,9 +15,10 @@ private:
     double p3_component;
     bool valid_flag;
 public:
-    Momentum(); // Default constructor
-    Momentum(double p0_comp, double p1_comp, double p2_comp, double p3_comp); // Parameterised constructor
-    ~Momentum(); // Destructor
+// Default constructor
+    Momentum();
+// Parameterised constructor
+    Momentum(double p0_comp, double p1_comp, double p2_comp, double p3_comp);
 // Getters for each member
     double get_p0_component() const;
     double get_p1_component() const;
@@ -31,10 +32,12 @@ public:
     void set_p3_component(double p3_comp);
 // Display function to display momentum information
     void display_information() const;
-// Define copy assignment 
-// Define copy constructor
-// Define move constructor
-// Define move assignment
+// Special functions
+    Momentum(const Momentum& RHS_object); // Copy constructor
+    Momentum(Momentum&& RHS_object); // Move constructor
+    Momentum& operator=(const Momentum& RHS_object); // Copy assignment operator
+    Momentum& operator=(Momentum&& RHS_object); // Move assignment operator
+    ~Momentum(); // Destructor
 
 };
 

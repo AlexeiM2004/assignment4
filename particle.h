@@ -13,9 +13,10 @@ private:
     Momentum* momentum; 
     bool valid_flag;
 public:
-    Particle(); // Default constructor
-    Particle(std::string part_name, std::string part_type, double p0_comp, double p1_comp, double p2_comp, double p3_comp); // Parameterised constructor
-    ~Particle(); // Destructor
+// Default constructor
+    Particle(); 
+// Parameterised constructor   
+    Particle(std::string part_name, std::string part_type, double p0_comp, double p1_comp, double p2_comp, double p3_comp);
 // Getters for each member
     std::string get_particle_name() const;
     std::string get_particle_type() const;
@@ -31,6 +32,15 @@ public:
     void set_p1_component(double p1_comp);
     void set_p2_component(double p2_comp);
     void set_p3_component(double p3_comp);
+// Display function to display particle information
+    void display_information() const;
+// Special functions
+    Particle(const Particle& RHS_object); // Copy constructor
+    Particle(Particle&& RHS_object); // Move constructor
+    Particle& operator=(const Particle& RHS_object); // Copy assignment operator
+    Particle& operator=(Particle&& RHS_object); // Move assignment operator
+    ~Particle(); // Destructor
+
 };
 
 #endif 
