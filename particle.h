@@ -35,9 +35,9 @@ public:
     void display_information() const;
 // Special functions
     Particle(const Particle& RHS_object); // Copy constructor
-    Particle(Particle&& RHS_object); // Move constructor
+    Particle(Particle&& RHS_object) noexcept; // Move constructor
     Particle& operator=(const Particle& RHS_object); // Copy assignment operator
-    Particle& operator=(Particle&& RHS_object); // Move assignment operator
+    Particle& operator=(Particle&& RHS_object) noexcept; // Move assignment operator
     ~Particle(); // Destructor
 
 };
