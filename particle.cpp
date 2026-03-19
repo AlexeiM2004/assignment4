@@ -29,12 +29,12 @@ double Particle::get_p3_component() const{return momentum->get_p3_component();}
 
 void Particle::set_particle_name(std::string part_name)
 {
-
+    particle_name = part_name;
 }
 
 void Particle::set_particle_type(std::string part_type)
 {
-
+    particle_type = part_type;
 }
 
 // Call momentum's setter in the particle class
@@ -46,19 +46,17 @@ void Particle::set_p0_component(double p0_comp)
 
 void Particle::set_p1_component(double p1_comp)
 {
-    momentum -> set_p1_component(p1_comp);}
+    momentum -> set_p1_component(p1_comp);
+}
 
 void Particle::set_p2_component(double p2_comp)
 {
-    momentum -> set_p2_component(p2_comp);}
+    momentum -> set_p2_component(p2_comp);
+}
 
 void Particle::set_p3_component(double p3_comp)
 {
-    momentum -> set_p3_component(p3_comp);}
-
-void Particle::display_information() const
-{
- 
+    momentum -> set_p3_component(p3_comp);
 }
 
 // Copy constructor
@@ -146,10 +144,10 @@ Particle& Particle::operator=(Particle&& RHS_object) noexcept
 Particle::~Particle() 
 {
     std::cout << "\nCall Particle Destructor.\n";
+    delete momentum;
 } 
 
 void Particle::display_information() const
 {
-    
     
 }

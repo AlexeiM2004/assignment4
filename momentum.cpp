@@ -24,10 +24,21 @@ double Momentum::get_p3_component() const{return p3_component;}
 
 // Setters 
 
+// p0 component setter must be validated such that p0 is non-negative
+
 void Momentum::set_p0_component(double p0_comp)
 {
-    p0_component = p0_comp;
+    if(p0_comp >= 0)
+    {
+        p0_component = p0_comp;
+        valid_flag = true;
+    }else{
+        std::cout << "\nPlease enter a valid p0 component value, such that p0 >= 0.\n";
+        valid_flag = false;
+    }
 }
+
+// p1, p2, p3 setters can take positive and negative values
 
 void Momentum::set_p1_component(double p1_comp)
 {
@@ -42,11 +53,6 @@ void Momentum::set_p2_component(double p2_comp)
 void Momentum::set_p3_component(double p3_comp)
 {
     p3_component = p3_comp;
-}
-
-void Momentum::display_information() const
-{
- 
 }
 
 // Copy constructor
