@@ -34,9 +34,9 @@ public:
     void display_information() const;
 // Special functions
     Momentum(const Momentum& RHS_object); // Copy constructor
-    Momentum(Momentum&& RHS_object); // Move constructor
+    Momentum(Momentum&& RHS_object) noexcept; // Move constructor
     Momentum& operator=(const Momentum& RHS_object); // Copy assignment operator
-    Momentum& operator=(Momentum&& RHS_object); // Move assignment operator
+    Momentum& operator=(Momentum&& RHS_object) noexcept; // Move assignment operator
     ~Momentum(); // Destructor
 
 };
