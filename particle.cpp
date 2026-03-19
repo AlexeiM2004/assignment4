@@ -1,6 +1,7 @@
 #include "particle.h"
 #include "momentum.h"
 #include <iostream>
+#include <algorithm>
 
 // Default constructor
 
@@ -9,17 +10,15 @@ Particle::Particle() : particle_name("Unspecified"), particle_type("Unspecified"
 
 // Parameterised constructor
 
-Particle::Particle(std::string part_name, std::string part_type, double p0_comp, double p1_comp, double p2_comp, double p3_comp) : valid_flag(true)
+Particle::Particle(std::string part_name, double p0_comp, double p1_comp, double p2_comp, double p3_comp) : valid_flag(true)
 {
     set_particle_name(part_name);
-    set_particle_type(part_type);
     momentum = new Momentum(p0_comp, p1_comp, p2_comp, p3_comp);
 }
 
 // Getters
 
 std::string Particle::get_particle_name() const{return particle_name;}
-std::string Particle::get_particle_type() const{return particle_type;}
 double Particle::get_p0_component() const {return momentum->get_p0_component();}
 double Particle::get_p1_component() const{return momentum->get_p1_component();}
 double Particle::get_p2_component() const{return momentum->get_p2_component();}
@@ -29,13 +28,69 @@ double Particle::get_p3_component() const{return momentum->get_p3_component();}
 
 void Particle::set_particle_name(std::string part_name)
 {
-    particle_name = part_name;
+    // A static vector containing all valid particle types. 
+    static std::vector<std::string> valid_particle_list = {
+        // Lepton types
+
+        "Electron","Muon","Taon","Electron-neutrino","Muon-neutrino","Tau-neutrio",
+        
+        // Quark types
+
+        "Up","Down","Charm","Strange","Top","Bottom",
+
+        // Baryons 
+
+        "Proton","Neutron","Sigma","Omega","Xi","Lambda",
+
+        // Mesons 
+
+        "Pion","Kaon","Phi","Rho","Eta",
+
+        // Bosons
+
+        "Photon", "W", "Z", "Gluon", "Higgs"
+
+    };
+    // Checks the type against the static vector
+    if(std::find(valid_particle_list.begin(), valid_particle_list.end(), part_name) != valid_particle_list.end())
+    {
+        particle_name = part_name;
+
+        if(part_name == "Electron" || part_name == "Muon" || part_name == "Taon" ||
+            part_name == "Electron-neutrino" || part_name == "Muon-neutrino" || part_name == "Tau-neutrio")
+        {
+            particle_type = "Lepton";
+
+        }else if(part_name == "Up" || part_name == "Down" || part_name == "Charm" ||
+            part_name == "Strange" || part_name == "Top" || part_name == "Bottom")
+        {
+            particle_type = "Quark";
+        }else if(part_name == "Proton" || part_name == "Neutron" || part_name == "Sigma" ||
+            part_name == "Omega" || part_name == "Xi" || part_name == "Lambda")
+        {
+            particle_type = "Baryon";
+        }else if(part_name == "Pion" || part_name == "Kaon" || part_name == "Phi" ||
+            part_name == "Rho" || part_name == "Eta")
+        {
+            particle_type = "Meson";
+        }else if(part_name == "Photon" || part_name == "W" || part_name == "Z" ||
+            part_name == "Gluon" || part_name == "Higgs")
+        {
+            particle_type = "Boson";
+        }
+    }else{
+        std::cout << "\nInvalid particle name input, please use a valid particle name.\n";
+        std::cout << "\nValid input names are;\n";
+        for(const auto& particle : valid_particle_list)
+        {
+            std::cout << particle << "\n";
+        }
+        std::cout << "\nNote that, input is case sensitive.\n";
+        particle_name = part_name;
+        valid_flag = false;
+    }
 }
 
-void Particle::set_particle_type(std::string part_type)
-{
-    particle_type = part_type;
-}
 
 // Call momentum's setter in the particle class
 

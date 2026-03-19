@@ -16,7 +16,7 @@ public:
 // Default constructor
     Particle(); 
 // Parameterised constructor   
-    Particle(std::string part_name, std::string part_type, double p0_comp, double p1_comp, double p2_comp, double p3_comp);
+    Particle(std::string part_name, double p0_comp, double p1_comp, double p2_comp, double p3_comp);
 // Getters for each member
     std::string get_particle_name() const;
     std::string get_particle_type() const;
@@ -27,7 +27,6 @@ public:
     bool is_valid() const {return valid_flag;}
 // Setters for each member
     void set_particle_name(std::string part_name);
-    void set_particle_type(std::string part_type);
     void set_p0_component(double p0_comp);
     void set_p1_component(double p1_comp);
     void set_p2_component(double p2_comp);
