@@ -3,12 +3,25 @@
 
 // Default constructor
 
-Momentum::Momentum() : p0_component(0), p1_component(0), p2_component(0), p3_component(0), valid_flag(true) {}
+Momentum::Momentum() : valid_flag(true) 
+{
+    four_momentum = new std::vector<double>;
+    four_momentum->push_back(0); // p0 (E) component
+    four_momentum->push_back(0); // p1 (px) component
+    four_momentum->push_back(0); // p2 (py) component
+    four_momentum->push_back(0); // p3 (pz) component
+}
 
 // Parameterised constructor
 
 Momentum::Momentum(double p0_comp, double p1_comp, double p2_comp, double p3_comp) : valid_flag(true)
 {
+    four_momentum = new std::vector<double>;
+    four_momentum->push_back(0); // p0 (E) component
+    four_momentum->push_back(0); // p1 (px) component
+    four_momentum->push_back(0); // p2 (py) component
+    four_momentum->push_back(0); // p3 (pz) component
+
     set_p0_component(p0_comp);
     set_p1_component(p1_comp);
     set_p2_component(p2_comp);
@@ -17,10 +30,10 @@ Momentum::Momentum(double p0_comp, double p1_comp, double p2_comp, double p3_com
 
 // Getters
 
-double Momentum::get_p0_component() const {return p0_component;}
-double Momentum::get_p1_component() const{return p1_component;}
-double Momentum::get_p2_component() const{return p2_component;}
-double Momentum::get_p3_component() const{return p3_component;}
+double Momentum::get_p0_component() const {return (*four_momentum)[0];}
+double Momentum::get_p1_component() const{return (*four_momentum)[1];}
+double Momentum::get_p2_component() const{return (*four_momentum)[2];}
+double Momentum::get_p3_component() const{return (*four_momentum)[3];}
 
 // Setters 
 
@@ -30,7 +43,7 @@ void Momentum::set_p0_component(double p0_comp)
 {
     if(p0_comp >= 0)
     {
-        p0_component = p0_comp;
+        (*four_momentum)[0] = p0_comp;
         valid_flag = true;
     }else{
         std::cout << "\nPlease enter a valid p0 component value, such that p0 >= 0.\n";
@@ -42,47 +55,37 @@ void Momentum::set_p0_component(double p0_comp)
 
 void Momentum::set_p1_component(double p1_comp)
 {
-    p1_component = p1_comp;
+    (*four_momentum)[1] = p1_comp;
 }
 
 void Momentum::set_p2_component(double p2_comp)
 {
-    p2_component = p2_comp;
+    (*four_momentum)[2] = p2_comp;
 }
 
 void Momentum::set_p3_component(double p3_comp)
 {
-    p3_component = p3_comp;
+    (*four_momentum)[3] = p3_comp;
 }
 
 // Copy constructor
 
-Momentum::Momentum(const Momentum& RHS_object) :
-    p0_component(RHS_object.p0_component),
-    p1_component(RHS_object.p1_component),
-    p2_component(RHS_object.p2_component),
-    p3_component(RHS_object.p3_component),
-    valid_flag(true)    // Reset valid flag to true, as a new object is created
+Momentum::Momentum(const Momentum& RHS_object) : valid_flag(true)
 {
+    four_momentum = new std::vector<double>(*(RHS_object.four_momentum));
     std::cout << "\nCall Momentum Copy Constructor.\n";
 }
 
 // Move constructor
 
 Momentum::Momentum(Momentum&& RHS_object) noexcept :
-    p0_component(RHS_object.p0_component),
-    p1_component(RHS_object.p1_component),
-    p2_component(RHS_object.p2_component),
-    p3_component(RHS_object.p3_component),
-    valid_flag(true)
+    valid_flag(true),
+    four_momentum(RHS_object.four_momentum)
 {
     std::cout << "\nCall Momentum Move Constructor.\n";
 
-    // Reset RHS_object values to a valid empty state
-    RHS_object.p0_component = 0;
-    RHS_object.p1_component = 0;
-    RHS_object.p2_component = 0;
-    RHS_object.p3_component = 0;
+    // Reset RHS_object vector to a valid empty state using nullptr
+    RHS_object.four_momentum = nullptr;
 } 
 
 // Copy assignment operator
@@ -94,10 +97,10 @@ Momentum& Momentum::operator=(const Momentum& RHS_object)
     // Self assignment check
     if(this != &RHS_object)
     {
-        p0_component = RHS_object.p0_component;
-        p1_component = RHS_object.p1_component;
-        p2_component = RHS_object.p2_component;
-        p3_component = RHS_object.p3_component;
+        // Delete existing momentum vector to prevent memory leak
+        delete four_momentum;
+
+        four_momentum = new std::vector<double>(*(RHS_object.four_momentum));
         valid_flag = true;
     }
     // Returns the reference to allow for chaining,
@@ -113,18 +116,15 @@ Momentum& Momentum::operator=(Momentum&& RHS_object) noexcept
     // Self assignment check
     if(this != &RHS_object)
     {
+        // Delete existing momentum vector to prevent memory leak
+        delete four_momentum;
+
         // Steal RHS's values
-        p0_component = RHS_object.p0_component;
-        p1_component = RHS_object.p1_component;
-        p2_component = RHS_object.p2_component;
-        p3_component = RHS_object.p3_component;  
+        four_momentum = RHS_object.four_momentum;
         valid_flag = true;
 
         // Reset RHS's values to a valid empty state
-        RHS_object.p0_component = 0;
-        RHS_object.p1_component = 0;
-        RHS_object.p2_component = 0;
-        RHS_object.p3_component = 0;
+        RHS_object.four_momentum = nullptr;
     }
     return *this;
 } 
@@ -132,6 +132,7 @@ Momentum& Momentum::operator=(Momentum&& RHS_object) noexcept
 Momentum::~Momentum() 
 {
     std::cout << "\nCall Momentum Destructor.\n";
+    delete four_momentum;
 } 
 
 void Momentum::display_information() const

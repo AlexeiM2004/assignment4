@@ -3,16 +3,14 @@
 // Header guard
 
 #include <string>
+#include <vector>
 
 // Create class momentum based on 4 vector with components p^mu = (p0, p1, p2, p3)
 
 class Momentum
 {
 private:
-    double p0_component;
-    double p1_component;
-    double p2_component;
-    double p3_component;
+    std::vector<double>* four_momentum; 
     bool valid_flag;
 public:
 // Default constructor
@@ -30,15 +28,14 @@ public:
     void set_p1_component(double p1_comp);
     void set_p2_component(double p2_comp);
     void set_p3_component(double p3_comp);
-// Display function to display momentum information
-    void display_information() const;
 // Special functions
     Momentum(const Momentum& RHS_object); // Copy constructor
     Momentum(Momentum&& RHS_object) noexcept; // Move constructor
     Momentum& operator=(const Momentum& RHS_object); // Copy assignment operator
-    Momentum& operator=(Momentum&& RHS_object) noexcept; // Move assignment operator
+    Momentum& operator=(Momentum&& RHS_object) noexcept ; // Move assignment operator
     ~Momentum(); // Destructor
-
+// Display function to display momentum information
+    void display_information() const;
 };
 
 #endif 
