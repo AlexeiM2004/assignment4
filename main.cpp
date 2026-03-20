@@ -130,27 +130,76 @@ int main()
 
     // Gather electron 1, 2 and muon 1, 2 momenta
 
-    Momentum electron1_momentum(electron1.get_p0_component(),
-                                electron1.get_p1_component(),
-                                electron1.get_p2_component(),
-                                electron1.get_p3_component());
+    Momentum electron1_momentum(
+        electron1.get_p0_component(),
+        electron1.get_p1_component(),
+        electron1.get_p2_component(),
+        electron1.get_p3_component());
 
-    Momentum electron2_momentum(electron2.get_p0_component(),
-                                electron2.get_p1_component(),
-                                electron2.get_p2_component(),
-                                electron2.get_p3_component());
+    Momentum electron2_momentum(
+        electron2.get_p0_component(),
+        electron2.get_p1_component(),
+        electron2.get_p2_component(),
+        electron2.get_p3_component());
                                 
-    Momentum muon1_momentum(muon1.get_p0_component(),
-                                muon1.get_p1_component(),
-                                muon1.get_p2_component(),
-                                muon1.get_p3_component());
+    Momentum muon1_momentum(
+        muon1.get_p0_component(),
+        muon1.get_p1_component(),
+        muon1.get_p2_component(),
+        muon1.get_p3_component());
     
-    Momentum muon2_momentum(muon2.get_p0_component(),
-                                muon2.get_p1_component(),
-                                muon2.get_p2_component(),
-                                muon2.get_p3_component());
+    Momentum muon2_momentum(
+        muon2.get_p0_component(),
+        muon2.get_p1_component(),
+        muon2.get_p2_component(),
+        muon2.get_p3_component());
 
+    
+    // Sum the four momenta of electron 1 and electron 2
 
+    Momentum four_momentum_addition = electron1_momentum + electron2_momentum;
+    std::cout << "\nFour momentum sum of electron 1 and electron 2; " <<
+        "\np0 = " << four_momentum_addition.get_p0_component() << " MeV, " <<
+        "\np1 = " << four_momentum_addition.get_p1_component() << " MeV/c, " <<
+        "\np2 = " << four_momentum_addition.get_p2_component() << " MeV/c, " <<
+        "\np3 = " << four_momentum_addition.get_p3_component() << " MeV/c.\n";
+
+    // Subtract the four momenta of electron 2 from electron 1
+
+    Momentum four_momentum_subtraction = electron1_momentum - electron2_momentum;
+    std::cout << "\nFour momentum subtraction of electron 2 from electron 1; " <<
+        "\np0 = " << four_momentum_subtraction.get_p0_component() << " MeV, " <<
+        "\np1 = " << four_momentum_subtraction.get_p1_component() << " MeV/c, " <<
+        "\np2 = " << four_momentum_subtraction.get_p2_component() << " MeV/c, " <<
+        "\np3 = " << four_momentum_subtraction.get_p3_component() << " MeV/c.\n";
+
+    // Multiply the four momenta of electron 1 by a scalar multiple
+
+    Momentum four_momentum_scalar_multiplication = electron1_momentum * 2.0;
+    std::cout << "\nFour momentum scalar multiplication of electron 1 by 2; " <<
+        "\np0 = " << four_momentum_scalar_multiplication.get_p0_component() << " MeV, " <<
+        "\np1 = " << four_momentum_scalar_multiplication.get_p1_component() << " MeV/c, " <<
+        "\np2 = " << four_momentum_scalar_multiplication.get_p2_component() << " MeV/c, " <<
+        "\np3 = " << four_momentum_scalar_multiplication.get_p3_component() << " MeV/c.\n";
+
+    // Dot product of muon 1 with muon 2
+
+    double dot_product = muon1_momentum * muon2_momentum;
+    std::cout << "\nFour momentum of muon 1 inner product with muon 2 " << dot_product << "  MeV²\n";
+
+    //---------- Utility Functions ----------//
+
+    // Calculate invariant mass of electron 1
+
+    std::cout << "\nInvariant mass of electron 1; " << electron1_momentum.invariant_mass() << " MeV/c²\n";
+
+    // Calculate beta of electron 1
+
+    std::cout << "\nBeta 'β' (v/c) of electron 1; " << electron1_momentum.calculate_beta() << " c\n";
+
+    // Calculate the Lorentz factor of electron 1
+
+    std::cout << "\nLorentz factor 'γ'of electron 1; " << electron1_momentum.calculate_gamma() << "\n";
 
 
     return 0;

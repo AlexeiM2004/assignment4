@@ -122,7 +122,7 @@ Particle::Particle(const Particle& RHS_object) :
     momentum(nullptr),
     valid_flag(true)    // Reset valid flag to true, as a new object is created
 {
-    std::cout << "\nCall Particle Copy Constructor.\n";
+    std::cout << "\nCall Particle Copy Constructor.";
 
     // Create a deep copy of new momentum object, by allocating new memory on the heap
     if(RHS_object.momentum != nullptr)
