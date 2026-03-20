@@ -39,7 +39,6 @@ public:
     Particle& operator=(const Particle& RHS_object); // Copy assignment operator
     Particle& operator=(Particle&& RHS_object) noexcept; // Move assignment operator
     ~Particle(); // Destructor
-
 };
 
 #endif 

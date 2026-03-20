@@ -196,6 +196,8 @@ Particle& Particle::operator=(Particle&& RHS_object) noexcept
     return *this;
 } 
 
+// Destructor
+
 Particle::~Particle() 
 {
     std::cout << "\nCall Particle Destructor.\n";
@@ -204,5 +206,11 @@ Particle::~Particle()
 
 void Particle::display_information() const
 {
-    
+    std::cout << "\nParticle Information;";
+    std::cout << "\nParticle name - " << particle_name << ",";
+    std::cout << "\nParticle type - " << particle_type << ",";
+    std::cout << "\nParticle energy - " << get_p0_component() << " MeV,";
+    std::cout << "\nParticle x momentum - " << get_p1_component() << " MeV/c,";
+    std::cout << "\nParticle y momentum - " << get_p2_component() << " MeV/c";
+    std::cout << "\nParticle z momentum - " << get_p3_component() << " MeV/c.";
 }
