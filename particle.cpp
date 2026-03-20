@@ -32,7 +32,7 @@ void Particle::set_particle_name(std::string part_name)
     static std::vector<std::string> valid_particle_list = {
         // Lepton types
 
-        "Electron","Muon","Taon","Electron-neutrino","Muon-neutrino","Tau-neutrio",
+        "Electron","Muon","Tau","Electron-neutrino","Muon-neutrino","Tau-neutrio",
         
         // Quark types
 
@@ -56,7 +56,7 @@ void Particle::set_particle_name(std::string part_name)
     {
         particle_name = part_name;
 
-        if(part_name == "Electron" || part_name == "Muon" || part_name == "Taon" ||
+        if(part_name == "Electron" || part_name == "Muon" || part_name == "Tau" ||
             part_name == "Electron-neutrino" || part_name == "Muon-neutrino" || part_name == "Tau-neutrio")
         {
             particle_type = "Lepton";

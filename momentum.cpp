@@ -1,5 +1,6 @@
 #include "momentum.h"
 #include <iostream>
+#include <cmath>
 
 // Default constructor
 
@@ -134,6 +135,114 @@ Momentum::~Momentum()
     std::cout << "\nCall Momentum Destructor.\n";
     delete four_momentum;
 } 
+
+// Addition operator
+
+Momentum Momentum::operator+(const Momentum& RHS_object) const
+{
+    return Momentum( 
+        get_p0_component() + RHS_object.get_p0_component(),
+        get_p1_component() + RHS_object.get_p1_component(),
+        get_p2_component() + RHS_object.get_p2_component(),
+        get_p3_component() + RHS_object.get_p3_component()
+    );
+}
+
+// Subtraction opersator
+
+Momentum Momentum::operator-(const Momentum& RHS_object) const
+{
+    return Momentum( 
+        get_p0_component() - RHS_object.get_p0_component(),
+        get_p1_component() - RHS_object.get_p1_component(),
+        get_p2_component() - RHS_object.get_p2_component(),
+        get_p3_component() - RHS_object.get_p3_component()
+    );
+}
+
+// Scalar multiplier operator
+
+Momentum Momentum::operator*(double scalar_multiplier) const
+{
+    return Momentum( 
+        get_p0_component() * scalar_multiplier,
+        get_p1_component() * scalar_multiplier,
+        get_p2_component() * scalar_multiplier,
+        get_p3_component() * scalar_multiplier
+    );
+}
+
+double Momentum::operator*(const Momentum& RHS_object) const
+{
+    return( 
+        (get_p0_component() * RHS_object.get_p0_component()) -
+        (get_p1_component() * RHS_object.get_p1_component()) -
+        (get_p2_component() * RHS_object.get_p2_component()) -
+        (get_p3_component() * RHS_object.get_p3_component()) 
+    );
+}
+
+// Calculate invariant mass operator
+
+double Momentum::invariant_mass() const
+{
+    double invariant_mass_squared = 
+    std::pow(get_p0_component(),2) -
+    std::pow(get_p1_component(),2) -
+    std::pow(get_p2_component(),2) -
+    std::pow(get_p3_component(),2);
+
+    // Somehow if the user yields a negative invariant mass squared, they will be notified.
+
+    if(invariant_mass_squared < 0 )
+    {
+        std::cout << "\nParticle possesses a negative invariant mass, how did we end up here?.\n";
+        double invariant_mass = 0;
+        return invariant_mass;
+    }
+
+    double invariant_mass = std::sqrt(invariant_mass_squared);
+
+    return invariant_mass;
+}
+
+
+// Calculate beta (velocity) operator
+
+double Momentum::calculate_beta() const
+{
+    double momentum_magnitude_squared =
+    std::pow(get_p1_component(),2) +
+    std::pow(get_p2_component(),2) +
+    std::pow(get_p3_component(),2);
+
+    double momentum_magnitude = std::sqrt(momentum_magnitude_squared);
+
+    // Uses the equation Beta = |p| / E
+    double beta = (momentum_magnitude) / (get_p0_component());
+
+    return beta;
+}
+
+// Calculate gamma (Lorentz factor) operator
+
+double Momentum::calculate_gamma() const
+{
+    double beta = calculate_beta();
+
+    if(beta == 1.0)
+    {
+        double gamma = 1e9;
+        return gamma;
+    }
+
+    // Uses the equation Gamma = 1 / sqrt(1-(beta)^2)
+    double gamma = std::sqrt(1.0 / (1 - std::pow(beta,2)));
+    
+    return gamma;
+}
+
+// Display information function
 
 void Momentum::display_information() const
 {

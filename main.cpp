@@ -12,42 +12,67 @@
 
 int main()
 {
-
+    std::cout << "\nCreate particle objects.\n";
+    
     // Test creation of valid particle 
-
-    std::cout << "\nCreate valid particles.\n";
-
-    Particle Electron("Electron", 35, 57, 97, 7);
-    Particle Muon("Muon", 33, 9, 60, 67);
-    Particle Taon("Taon", 6, 25, 95, 65);
+    Particle Electron1("Electron", 35, 57, 97, 7);
+    Particle Electron2("Electron", 35, 57, 97, 7);
+    Particle Muon1("Muon", 33, 9, 60, 67);
+    Particle Muon2("Muon", 54, -9, 0, -7);
+    Particle Muon3("Muon", 94, 3, -12, 67);
+    Particle Muon4("Muon", 23, 18, 60, 15);
+    Particle Tau1("Tau", 6, -25, 95, -65);
+    Particle Tau2("Tau", 25, -32, 52, -1);
     Particle Photon("Photon", 22, 40, 81, 10);
 
     // Test creation of invalid particles
-
-    std::cout << "\nCreate a particle with an invalid name.\n";
-
-    Particle Chud("Chud particle", 67, 67, 67, 67); // Valid flag will be triggered as false
-
-    std::cout << "\nCreate a particle with an invalid 4 momenta.\n";
-
-    Particle SecretChud("W", -67, 67, 67, 67); // Valid flag will be trigged as false.
+    //Particle ChudParticle("Chud particle", 67, 67, 67, 67); // Valid flag will be triggered as false due to name
+    //Particle SecretChudParticle("W", -67, 67, 67, 67); // Valid flag will be trigged as false due to momentum
 
     // Create particle array and store particles
 
     std::vector<Particle> particles;
-
-    particles.push_back(Electron);
-    particles.push_back(Muon);
-    particles.push_back(Taon);
+    particles.push_back(Electron1);
+    particles.push_back(Electron2);
+    particles.push_back(Muon1);
+    particles.push_back(Muon2);
+    particles.push_back(Muon3);
+    particles.push_back(Muon4);
+    particles.push_back(Tau1);
+    particles.push_back(Tau2);
     particles.push_back(Photon);
-    particles.push_back(Chud);
-    particles.push_back(SecretChud);
+    //particles.push_back(ChudParticle);
+    //particles.push_back(SecretChudParticle);
+
+    std::cout << "\nCreate momentum objects.\n";
+    
+    // Test creation of a valid momentum and an invalid momentum
+    Momentum ChadMomentum(67, 67, 67, 67);
+    //Momentum ChudMomentum(-67, 67, 67, 67);
+
+    // Create momentum array to store momenta
+
+    std::vector<Momentum> momenta;
+    momenta.push_back(ChadMomentum);
+    //momenta.push_back(ChudMomentum); 
+    
 
     // If an invalid input was flagged in the particle.cpp, program exits gracefully by returning 1
     
     for(const Particle& particle : particles)
     {
         if(particle.is_valid() == false)
+        {
+            std::cout << "\nExiting program.";
+            return 1;
+        }
+    }
+    
+    // If an invalid input was flagged in the momentum.cpp, program exits gracefully by returning 1
+
+    for(const Momentum& momentum : momenta)
+    {
+        if(momentum.is_valid() == false)
         {
             std::cout << "\nExiting program.";
             return 1;

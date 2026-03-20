@@ -34,6 +34,15 @@ public:
     Momentum& operator=(const Momentum& RHS_object); // Copy assignment operator
     Momentum& operator=(Momentum&& RHS_object) noexcept ; // Move assignment operator
     ~Momentum(); // Destructor
+// Arithmetic operators
+    Momentum operator+(const Momentum& RHS_object) const; // Addition operator
+    Momentum operator-(const Momentum& RHS_object) const; // Subtraction operator
+    double operator*(const Momentum& RHS_object) const; // Dot product operator
+    Momentum operator*(double scalar) const; // Scalar multiplier operator
+// Utility operators
+    double invariant_mass() const; // Calculate invariant mass operator
+    double calculate_beta() const; // Calculate velocity operator
+    double calculate_gamma() const; // Calculate Lorentz factor operator
 // Display function to display momentum information
     void display_information() const;
 };
