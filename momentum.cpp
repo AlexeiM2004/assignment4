@@ -80,8 +80,8 @@ Momentum::Momentum(const Momentum& RHS_object) : valid_flag(true)
 // Move constructor
 
 Momentum::Momentum(Momentum&& RHS_object) noexcept :
-    valid_flag(true),
-    four_momentum(RHS_object.four_momentum)
+    four_momentum(RHS_object.four_momentum),
+    valid_flag(true)
 {
     std::cout << "\nCall Momentum Move Constructor.\n";
 
