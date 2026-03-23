@@ -232,12 +232,6 @@ double Momentum::calculate_gamma() const
 {
     double beta = calculate_beta();
 
-    if(beta == 1.0)
-    {
-        double gamma = 1e9;
-        return gamma;
-    }
-
     // Uses the equation Gamma = 1 / sqrt(1-(beta)^2)
     double gamma = std::sqrt(1.0 / (1 - std::pow(beta,2)));
     

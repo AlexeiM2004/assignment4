@@ -29,55 +29,12 @@ double Particle::get_p3_component() const{return momentum->get_p3_component();}
 void Particle::set_particle_name(std::string part_name)
 {
     // A static vector containing all valid particle types. 
-    static std::vector<std::string> valid_particle_list = {
-        // Lepton types
-
-        "Electron","Muon","Tau","Electron-neutrino","Muon-neutrino","Tau-neutrio",
-        
-        // Quark types
-
-        "Up","Down","Charm","Strange","Top","Bottom",
-
-        // Baryons 
-
-        "Proton","Neutron","Sigma","Omega","Xi","Lambda",
-
-        // Mesons 
-
-        "Pion","Kaon","Phi","Rho","Eta",
-
-        // Bosons
-
-        "Photon", "W", "Z", "Gluon", "Higgs"
-
-    };
+    static std::vector<std::string> valid_particle_list = {"Electron","Muon","Tau"};
     // Checks the type against the static vector
     if(std::find(valid_particle_list.begin(), valid_particle_list.end(), part_name) != valid_particle_list.end())
     {
         particle_name = part_name;
-
-        if(part_name == "Electron" || part_name == "Muon" || part_name == "Tau" ||
-            part_name == "Electron-neutrino" || part_name == "Muon-neutrino" || part_name == "Tau-neutrio")
-        {
-            particle_type = "Lepton";
-
-        }else if(part_name == "Up" || part_name == "Down" || part_name == "Charm" ||
-            part_name == "Strange" || part_name == "Top" || part_name == "Bottom")
-        {
-            particle_type = "Quark";
-        }else if(part_name == "Proton" || part_name == "Neutron" || part_name == "Sigma" ||
-            part_name == "Omega" || part_name == "Xi" || part_name == "Lambda")
-        {
-            particle_type = "Baryon";
-        }else if(part_name == "Pion" || part_name == "Kaon" || part_name == "Phi" ||
-            part_name == "Rho" || part_name == "Eta")
-        {
-            particle_type = "Meson";
-        }else if(part_name == "Photon" || part_name == "W" || part_name == "Z" ||
-            part_name == "Gluon" || part_name == "Higgs")
-        {
-            particle_type = "Boson";
-        }
+        particle_type = "Lepton";
     }else{
         std::cout << "\nInvalid particle name input, please use a valid particle name.\n";
         std::cout << "\nValid input names are;\n";

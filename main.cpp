@@ -18,12 +18,14 @@ int main()
     std::cout << "\nCreate particle objects.\n";
     
     // Test creation of valid particle 
-    Particle electron1("Electron", 135, 57, 97, 7);
-    Particle electron2("Electron", 135, 57, 97, 7);
-    Particle muon1("Muon", 133, 9, 60, 67);
-    Particle muon2("Muon", 154, -9, 0, -7);
-    Particle tau1("Tau", 226, -25, 95, -65);
-    Particle tau2("Tau", 325, -32, 52, -1);
+    Particle electron1("Electron", 15.5, -5.0, 3.0, 8.0);
+    Particle electron2("Electron", 10.2, -7.0, 4.0, 12.0);
+    Particle electron3("Electron", 12.8, 6.0, -4.0, 10.0); 
+    Particle electron4("Electron", 18.5, -8.0, 5.0, 14.0);
+    Particle muon1("Muon", 150.0, 50.0, 60.0, 80.0);
+    Particle muon2("Muon", 200.0, -70.0, 50.0, 120.0);
+    Particle muon3("Muon", 175.0, 30.0, 80.0, -90.0);
+    Particle muon4("Muon", 143.0, 10.0, 150.0, -30.0);
 
     // Test creation of invalid particles
     //Particle ChudParticle("Chud particle", 67, 67, 67, 67); // Valid flag will be triggered as false due to name
@@ -34,10 +36,12 @@ int main()
     std::vector<Particle> particles;
     particles.push_back(electron1);
     particles.push_back(electron2);
+    particles.push_back(electron3);
+    particles.push_back(electron4);
     particles.push_back(muon1);
     particles.push_back(muon2);
-    particles.push_back(tau1);
-    particles.push_back(tau2);
+    particles.push_back(muon3);
+    particles.push_back(muon4);
     //particles.push_back(ChudParticle);
     //particles.push_back(SecretChudParticle);
 
@@ -98,15 +102,15 @@ int main()
 
     // Copy Constructor
     std::cout << "\nCopy constructor demonstration.\n";
-    Particle particle_copy(electron1);
-    std::cout << "\nOriginal: " << electron1.get_particle_name()
-            << ", Energy = " << electron1.get_p0_component() << " MeV\n";
+    Particle particle_copy(electron3);
+    std::cout << "\nOriginal: " << electron3.get_particle_name()
+            << ", Energy = " << electron3.get_p0_component() << " MeV\n";
     std::cout << "\nCopied: " << particle_copy.get_particle_name()
             << ", Energy = " << particle_copy.get_p0_component() << " MeV\n";
 
     // Move Constructor
     std::cout << "\nMove constructor demonstration.\n";
-    Particle particle_moved(std::move(muon1));
+    Particle particle_moved(std::move(muon3));
     std::cout << "\nMoved particle to a new object\n";
     std::cout << "Moved : " << particle_moved.get_particle_name()
             << ", Energy = " << particle_moved.get_p0_component() << " MeV\n";
@@ -114,14 +118,14 @@ int main()
     // Copy Assignment Operator 
     std::cout << "\nCopy assignment operator demonstration.\n";
     Particle particle_copy_assignment;
-    particle_copy_assignment = electron2;
+    particle_copy_assignment = electron4;
     std::cout << "Copied : " << particle_copy_assignment.get_particle_name()
             << ", Energy = " << particle_copy_assignment.get_p0_component() << " MeV\n";
 
     // Move Assingment Operator
     std::cout << "\nMove assignment operator demonstration.\n";
     Particle particle_move_assignment;
-    particle_move_assignment = std::move(muon2);
+    particle_move_assignment = std::move(muon4);
     std::cout << "Moved : " << particle_move_assignment.get_particle_name()
             << ", Energy = " << particle_move_assignment.get_p0_component() << " MeV\n";
 
@@ -185,7 +189,7 @@ int main()
     // Dot product of muon 1 with muon 2
 
     double dot_product = muon1_momentum * muon2_momentum;
-    std::cout << "\nFour momentum of muon 1 inner product with muon 2 " << dot_product << "  MeV²\n";
+    std::cout << "\nFour momentum of muon 1 inner product with muon 2; " << dot_product << "  MeV²\n";
 
     //---------- Utility Functions ----------//
 
@@ -195,11 +199,11 @@ int main()
 
     // Calculate beta of electron 1
 
-    std::cout << "\nBeta 'β' (v/c) of electron 1; " << electron1_momentum.calculate_beta() << " c\n";
+    std::cout << "\nBeta (v/c) of electron 1; " << electron1_momentum.calculate_beta() << " c\n";
 
     // Calculate the Lorentz factor of electron 1
 
-    std::cout << "\nLorentz factor 'γ'of electron 1; " << electron1_momentum.calculate_gamma() << "\n";
+    std::cout << "\nLorentz factor of electron 1; " << electron1_momentum.calculate_gamma() << "\n";
 
 
     return 0;
