@@ -36,7 +36,7 @@ Main.cpp;
 - Display results of all operations.
 
 Momentum.h; 
-- Defines Momentum class, with private members; ```std::vector<double>* four_momentum``` abd ```bool valid_flag```.
+- Defines Momentum class, with private members; ```std::vector<double>* four_momentum``` and ```bool valid_flag```.
 - Declares public methods; default constructor, parameterised constructor, getters and setters (for each member respectively).
 - Declares the special functions; copy constructor, move constructor copy assignment operator and destructor.
 - Declares arithmetic operators; addition ```+```, subtraction ```-```, dot product and scalar multiplication ```*```.
@@ -92,10 +92,10 @@ Phase 4 – ;
 
 Phase 5 – ; 
 
-## Decleration of AI usage
+## Declaration of AI usage
 
 AI tools were utilized in this coding process to;
 - Debug and provide solutions to code errors.
 - Provide feedback to code quality, and suggestions for improvement.
 
-The core program logic, strutures and algorithms were developed independently by the student (11022726). With AI tools serving as an invaluable tool for debugging and review purposes.
+The core program logic, strucures and algorithms were developed independently by the student (11022726). With AI tools serving as an invaluable tool for debugging and review purposes.
