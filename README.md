@@ -4,7 +4,7 @@
 
 This program builds on the object-oriented programming concepts used in assignment 3's program by introducing proper memory management, special functions (Rule of 0/3/5), and operator overloading. The program;
 - Creates Particle objects, with associated name, type and four momenta.
-- Implements dynamic memory allocation for four-momenta using heap-allocated vectors.
+- Implements dynamic memory allocation for four-momenta using heap-allocated vectors to practice manual memory management.
 - Demonstrates special function usage such as, copy and move constructors and assignment operators and destructor. Allowing for deep copying and resource stealing. Correctly states every time a special function is used.
 - Overloads functions for arithmetic operations such as; vector addition, subtraction, dot product and scalar multiplication.
 - Uses utility functions for relativistic calculations such as; invariant mass, relativistic velocity and Lorentz factor.
@@ -36,11 +36,11 @@ Main.cpp;
 - Display results of all operations.
 
 Momentum.h; 
-- Defines Momentum class, with private members; ```std::vector/<double>* four_momentum``` abd ```bool valid_flag```.
+- Defines Momentum class, with private members; ```std::vector<double>* four_momentum``` abd ```bool valid_flag```.
 - Declares public methods; default constructor, parameterised constructor, getters and setters (for each member respectively).
 - Declares the special functions; copy constructor, move constructor copy assignment operator and destructor.
 - Declares arithmetic operators; addition ```+```, subtraction ```-```, dot product and scalar multiplication ```*```.
-- Declares utility operators; invariant_mass, calculate_beta and calculate_gamma.
+- Declares utility functions; invariant_mass, calculate_beta and calculate_gamma.
 - Declares display function.
 
 Momentum.cpp;
@@ -58,7 +58,7 @@ Momentum.cpp;
 - Implements display function.
 
 Particle.h;
-- Defines source class with private members, ```std::string particle_name```, ```std::string particle_type```, ```Momentum* momentum``` and ```bool valid_flag```.
+- Defines particle class with private members, ```std::string particle_name```, ```std::string particle_type```, ```Momentum* momentum``` and ```bool valid_flag```.
 - Uses pointer to the dynamically allocated Momentum object.
 - Declares public methods; default constructor, parameterised constructor, getters and setters (for each member respectively).
 - Declares the special functions; copy constructor, move constructor, copy assignment operator, move assignment operator and destructor.
