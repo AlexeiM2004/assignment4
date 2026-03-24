@@ -21,6 +21,12 @@ For Mac/Linux;
 - ```g++-11 main.cpp particle.cpp momentum.cpp -o assignment-4.o -std=gnu++17```  
 - Then run ```assignment-4.o```
 
+## UML Class Diagram
+
+<img width="481" height="330" alt="Assignment4_UML_Class_Diagram drawio drawio" src="https://github.com/user-attachments/assets/67e44f76-8d94-4100-ad90-c1ebdb4ca556" />
+
+The filled diamond arrow indicates "Composition"
+
 ## Program Structure
 
 This program is split into 5 files,  
