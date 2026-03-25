@@ -19,6 +19,7 @@ Particle::Particle(std::string part_name, double p0_comp, double p1_comp, double
 // Getters
 
 std::string Particle::get_particle_name() const{return particle_name;}
+std::string Particle::get_particle_type() const {return particle_type;}
 double Particle::get_p0_component() const {return momentum->get_p0_component();}
 double Particle::get_p1_component() const{return momentum->get_p1_component();}
 double Particle::get_p2_component() const{return momentum->get_p2_component();}
@@ -118,6 +119,7 @@ Particle& Particle::operator=(const Particle& RHS_object)
         particle_type = RHS_object.particle_type;
         valid_flag = true;
         delete momentum; // Delete old momentum to prevent memory leak  
+        momentum = nullptr;
         // Create a deep copy of new momentum object, by allocating new memory on the heap
         if(RHS_object.momentum != nullptr)
         {
