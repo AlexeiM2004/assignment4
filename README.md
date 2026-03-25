@@ -15,11 +15,11 @@ This program builds on the object-oriented programming concepts used in assignme
 ## Compilation code
 
 For Windows;
-- ```g++ main.cpp particle.cpp momentum.cpp -o assignment-4.exe -std=gnu++17```   
+- ```g++ main.cpp particle.cpp momentum.cpp -o assignment-4.exe -std=gnu++17 -Wall```   
 - Then run ```assignment-4.exe```
 
 For Mac/Linux;
-- ```g++-11 main.cpp particle.cpp momentum.cpp -o assignment-4.o -std=gnu++17```  
+- ```g++-11 main.cpp particle.cpp momentum.cpp -o assignment-4.o -std=gnu++17 -Wall```  
 - Then run ```assignment-4.o```
 
 ## UML Class Diagram
