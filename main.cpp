@@ -189,21 +189,21 @@ int main()
     // Dot product of muon 1 with muon 2
 
     double dot_product = muon1_momentum * muon2_momentum;
-    std::cout << "\nFour momentum of muon 1 inner product with muon 2; " << dot_product << "  MeV²\n";
+    std::cout << "\nFour momentum of muon 1 inner product with muon 2: " << dot_product << "  MeV²\n";
 
     //---------- Utility Functions ----------//
 
     // Calculate invariant mass of electron 1
 
-    std::cout << "\nInvariant mass of electron 1; " << electron1_momentum.invariant_mass() << " MeV/c²\n";
+    std::cout << "\nInvariant mass of electron 1: " << electron1_momentum.invariant_mass() << " MeV/c²\n";
 
     // Calculate beta of electron 1
 
-    std::cout << "\nBeta (v/c) of electron 1; " << electron1_momentum.calculate_beta() << " c\n";
+    std::cout << "\nBeta (v/c) of electron 1: " << electron1_momentum.calculate_beta() << " c\n";
 
     // Calculate the Lorentz factor of electron 1
 
-    std::cout << "\nLorentz factor of electron 1; " << electron1_momentum.calculate_gamma() << "\n";
+    std::cout << "\nLorentz factor of electron 1: " << electron1_momentum.calculate_gamma() << "\n";
 
 
     return 0;
