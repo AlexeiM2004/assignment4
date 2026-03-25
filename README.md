@@ -15,11 +15,11 @@ This program builds on the object-oriented programming concepts used in assignme
 ## Compilation code
 
 For Windows;
-- ```g++ main.cpp particle.cpp momentum.cpp -o assignment-4.exe -std=gnu++17```   
+- ```g++ main.cpp particle.cpp momentum.cpp -o assignment-4.exe -std=gnu++17 -Wall```   
 - Then run ```assignment-4.exe```
 
 For Mac/Linux;
-- ```g++-11 main.cpp particle.cpp momentum.cpp -o assignment-4.o -std=gnu++17```  
+- ```g++-11 main.cpp particle.cpp momentum.cpp -o assignment-4.o -std=gnu++17 -Wall```  
 - Then run ```assignment-4.o```
 
 ## UML Class Diagram
@@ -144,6 +144,33 @@ Phase 6 - Testing and Refining;
   - Display of all results.
   - Verified no memory leaks.
   - Verified no further issues after using ```-Wall```.
+
+## User Guide
+
+To implement a new particle;
+
+-  Use the format ```name("Electron/Muon/Tau",p0 (> 0),p1,p2,p3)```.
+-  Pushback the particle into the vector ```std::vector<Particle> particles```.
+
+To implement a new momentum;
+
+-  Use the format ```name(p0 (> 0),p1,p2,p3)```.
+-  Pushback the momentum into the vector ```std::vector<Momentum> momenta```.
+
+To modify existing particle / momenta;
+
+- Use setters, e.g. ```muon4.set_p1_component(67)```.
+
+To add a new particle type;
+
+- Find ```set_particle_name()``` in particle.cpp.
+- Add new particle name to ```valid_particle_list```.
+- Implement a corresponding type assignment.
+
+Adding new arithmetic operations;
+
+- Declare new operator in momentum.h (ensure const set).
+- Implement in momentum.cpp using same format as previous examples.
 
 ## Declaration of AI usage
 
