@@ -42,12 +42,12 @@ double Momentum::get_p3_component() const{return (*four_momentum)[3];}
 
 void Momentum::set_p0_component(double p0_comp)
 {
-    if(p0_comp >= 0)
+    if(p0_comp > 0)
     {
         (*four_momentum)[0] = p0_comp;
         valid_flag = true;
     }else{
-        std::cout << "\nPlease enter a valid p0 component value, such that p0 >= 0.\n";
+        std::cout << "\nPlease enter a valid p0 component value, such that p0 > 0.\n";
         valid_flag = false;
     }
 }
@@ -186,7 +186,7 @@ double Momentum::operator*(const Momentum& RHS_object) const
 
 // Calculate invariant mass operator
 
-double Momentum::invariant_mass() const
+double Momentum::invariant_mass()
 {
     double invariant_mass_squared = 
     std::pow(get_p0_component(),2) -
@@ -194,13 +194,14 @@ double Momentum::invariant_mass() const
     std::pow(get_p2_component(),2) -
     std::pow(get_p3_component(),2);
 
-    // Somehow if the user yields a negative invariant mass squared, they will be notified.
+    // Somehow if the user yields a negative invariant mass squared, they will be notified, valid_flag will be set to false.
+    // Program will terminate gracefully.
 
     if(invariant_mass_squared < 0 )
     {
         std::cout << "\nParticle possesses a negative invariant mass, how did we end up here?.\n";
-        double invariant_mass = 0;
-        return invariant_mass;
+        valid_flag = false;
+        return 0.0;
     }
 
     double invariant_mass = std::sqrt(invariant_mass_squared);
