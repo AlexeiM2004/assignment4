@@ -145,6 +145,33 @@ Phase 6 - Testing and Refining;
   - Verified no memory leaks.
   - Verified no further issues after using ```-Wall```.
 
+## User Guide
+
+To implement a new particle;
+
+-  Use the format ```name("Electron/Muon/Tau",p0 (> 0),p1,p2,p3)```.
+-  Pushback the particle into the vector ```std::vector<Particle> particles```.
+
+To implement a new momentum;
+
+-  Use the format ```name(p0 (> 0),p1,p2,p3)```.
+-  Pushback the momentum into the vector ```std::vector<Momentum> momenta```.
+
+To modify existing particle / momenta;
+
+- Use setters, e.g. ```muon4.set_p1_component(67)```.
+
+To add a new particle type;
+
+- Find ```set_particle_name()``` in particle.cpp.
+- Add new particle name to ```valid_particle_list```.
+- Implement a corresponding type assignment.
+
+Adding new arithmetic operations;
+
+- Declare new operator in momentum.h (ensure const set).
+- Implement in momentum.cpp using same format as previous examples.
+
 ## Declaration of AI usage
 
 AI tools were utilized in this coding process to;
